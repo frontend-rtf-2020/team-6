@@ -1,0 +1,24 @@
+body {
+  padding: 20px;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+section a:link {
+  font-weight: bold;
+  text-decoration: none;
+  color: #5aa827;
+  transition: color 0.1s linear;
+}
+
+section a:visited {
+  font-weight: bold;
+  text-decoration: none;
+  color: #5dad27;
+  transition: color 0.1s linear;
+}
+
+section a:hover, a:focus, a:active {
+  color: #66be2d;
+}
+
+
