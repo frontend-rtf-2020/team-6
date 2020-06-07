@@ -1,0 +1,9 @@
+{
+  "name": "messenged",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "npm install --prefix front && npm install --prefix back",
+    "build": "npm run build --prefix front",
+    "start": "node back/bin/www"
+  }
+}
