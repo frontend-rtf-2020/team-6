@@ -1,16 +1,82 @@
-a:link {
-  font-weight: bold;
-  text-decoration: none;
-  color: #5aa827;
-  transition: color 0.8s linear; }
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+header .container .link, .form-block form input, .form-block form button {
+  transition: all ease-in-out .2s; }
 
-a:visited {
-  font-weight: bold;
-  text-decoration: none;
-  color: #5dad27;
-  transition: color 0.8s linear; }
+body {
+  background: #323C55;
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+  line-height: 1;
+  font-size: 14pt;
+  color: white; }
 
-a:hover, a:focus, a:active {
-  color: #66be2d; }
+*,
+*:after,
+*:before {
+  box-sizing: border-box; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; }
+
+input, button {
+  font-family: inherit;
+  border: none;
+  color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto; }
+
+header {
+  background: #323C55;
+  border-bottom: solid rgba(255, 255, 255, 0.4) 2px; }
+  header .container {
+    display: flex;
+    justify-content: flex-start;
+    height: 60px; }
+    header .container .link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 62px;
+      padding: 0 10px; }
+      header .container .link:hover {
+        box-shadow: inset 0 -2px 0 #8C38A1; }
+      header .container .link span {
+        color: #FFF;
+        font-weight: 500; }
+
+.form-block {
+  width: 50%;
+  margin: 40px auto;
+  border: solid rgba(255, 255, 255, 0.4) 1px; }
+  .form-block form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px; }
+    .form-block form input {
+      background: transparent;
+      outline: 0;
+      width: 100%;
+      color: white;
+      padding: 10px 5px;
+      margin: 15px 0;
+      border-bottom: solid rgba(255, 255, 255, 0.4) 1px; }
+      .form-block form input:focus {
+        border-bottom: solid white 1px; }
+    .form-block form button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: #9971b3;
+      border-radius: 5px;
+      padding: 15px; }
+      .form-block form button:hover {
+        background: #8C38A1; }
+      .form-block form button span {
+        font-size: 18pt;
+        font-weight: 600; }
 
 /*# sourceMappingURL=index.css.map */

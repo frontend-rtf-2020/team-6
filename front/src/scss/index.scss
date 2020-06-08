@@ -1,21 +1,8 @@
-a:link {
-  font-weight: bold;
-  text-decoration: none;
-  color: #5aa827;
-  transition: color 0.8s linear;
-}
-
-a:visited {
-  font-weight: bold;
-  text-decoration: none;
-  color: #5dad27;
-  transition: color 0.8s linear;
-}
-
-a:hover, a:focus, a:active {
-  color: #66be2d;
-}
-
+@import "variables";
+@import "common";
+@import "basicSettings";
+@import "header";
+@import "auth_reg";
 
 
 

@@ -1,0 +1,53 @@
+.form-block {
+    width: 50%;
+    margin: 40px auto;
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+
+        input {
+            background: transparent;
+            outline: 0;
+            width: 100%;
+
+            color: white;
+            padding: 10px 5px;
+            margin: 15px 0;
+
+            border-bottom: solid rgba(255, 255, 255, 0.4) 1px;
+
+            @extend %transition;
+
+            &:focus {
+                border-bottom: solid white 1px;
+            }
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+            background: $purpleLight;
+
+            border-radius: 5px;
+            padding: 15px;
+
+            @extend %transition;
+
+            &:hover {
+                background: $purple;
+            }
+
+            span {
+                font-size: 18pt;
+                font-weight: 600;
+            }
+        }
+    }
+}
