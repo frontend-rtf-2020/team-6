@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "npm install --prefix front && npm install --prefix back",
     "build": "npm run build --prefix front",
-    "devFront": "npm run start --prefix front",
+    "dev": "npm run start --prefix front",
     "start": "node back/bin/www"
   }
 }
