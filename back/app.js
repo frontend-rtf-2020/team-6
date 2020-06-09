@@ -1,6 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
@@ -14,6 +16,18 @@ mongoose.connect('mongodb+srv://warden:frhnr@cluster0-vpewq.azure.mongodb.net/te
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
+
+// session
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({ 
+    url: 'mongodb+srv://warden:frhnr@cluster0-vpewq.azure.mongodb.net/test?retryWrites=true&w=majority',
+    autoRemove: 'interval',
+    autoRemoveInterval: 60
+  })
+}))
 
 app.use(logger('dev'));
 app.use(express.json());

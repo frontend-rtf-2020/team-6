@@ -1,5 +1,4 @@
 var bcrypt = require('bcryptjs')
-var jwt = require('jsonwebtoken')
 var {check, validationResult} = require('express-validator')
 var User = require('../models/User')
 
@@ -9,6 +8,8 @@ const authValidators = [
 
 async function Authorization(req, res) {
     try {
+        if (req.session.user) return res.redirect('/')
+
         var errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -31,14 +32,8 @@ async function Authorization(req, res) {
             return res.status(400).json({message: 'Неверный пароль'})
         }
 
-        var token = jwt.sign(
-            {userId: user.id},
-            'secretno',
-            {expiresIn: '1h'}
-        )
+        req.session.user = {id: user.id, name: user.password}
 
-        //res.json({token, userId: user.id})
-        res.redirect('/');
     } catch (e) {
         res.json(e);
     }
