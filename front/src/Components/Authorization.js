@@ -5,9 +5,9 @@ export default function Authorization() {
         <div className="container">
             <div className="form-block">
                 <form className="form" method="POST">
-                    <input type="email" placeholder="Email"></input>
-                    <input type="password" placeholder="Password"></input>
-                    <button type="submit"><span>Авторизоваться</span></button>
+                    <input type="email" placeholder="Email" name='email'></input>
+                    <input type="password" placeholder="Password" name='password'></input>
+                    <button type="submit"><span>Войти</span></button>
                 </form>
             </div>
         </div>

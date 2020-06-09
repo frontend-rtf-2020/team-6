@@ -3,15 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var authRouter = require('./routes/authRouter');
+var regRouter = require('./routes/regRouter');
 
 var app = express();
-app.use('/auth', require('./routes/auth'))
-// // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+
+mongoose.connect('mongodb+srv://warden:frhnr@cluster0-vpewq.azure.mongodb.net/test?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,8 +22,8 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../front/build')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/reg', regRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
