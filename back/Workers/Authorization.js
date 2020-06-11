@@ -3,7 +3,7 @@ var {check, validationResult} = require('express-validator')
 var User = require('../models/User')
 
 const authValidators = [
-    check('email', 'Введите корректный email').normalizeEmail().isEmail(),
+    //check('email', 'Введите корректный email').normalizeEmail().isEmail(),
     check('password', 'Введите пароль').exists()]
 
 async function Authorization(req, res) {
@@ -20,9 +20,9 @@ async function Authorization(req, res) {
 
         var {email, password} = req.body
 
-        var user = await User.findOne({email})
+        var userEmailLogin = await User.findOne({$or : [{ email: email}, {login: email}]})
 
-        if (!user) {
+        if (!userEmailLogin) {
             return res.status(400).json({message: 'Такого пользователя не существует'})
         }
 
@@ -33,7 +33,7 @@ async function Authorization(req, res) {
         }
 
         req.session.user = {id: user.id, name: user.password}
-
+        res.status(201).json({message: 'Вход успешен'})
     } catch (e) {
         res.json(e);
     }

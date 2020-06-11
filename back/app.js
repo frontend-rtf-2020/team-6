@@ -24,8 +24,7 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore({ 
     url: 'mongodb+srv://warden:frhnr@cluster0-vpewq.azure.mongodb.net/test?retryWrites=true&w=majority',
-    autoRemove: 'interval',
-    autoRemoveInterval: 60
+    ttl: 60 * 60
   })
 }))
 

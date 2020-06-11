@@ -9,7 +9,7 @@ const regValidators = [
 
 async function Registration(req, res) {
     try {
-        var {email, password} = req.body
+        var {email, password, login} = req.body
 
         var errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -25,7 +25,7 @@ async function Registration(req, res) {
         }
 
         var hashedPass = await bcrypt.hash(password, 12)
-        var user = new User({email, password: hashedPass})
+        var user = new User({login, email, password: hashedPass})
         await user.save();
         res.redirect('/');
         //res.status(201).json({message: 'Пользователь успешно создан'})
