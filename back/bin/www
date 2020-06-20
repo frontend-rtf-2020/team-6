@@ -22,24 +22,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-/** 
-socket.on("connection", socket => {
-  console.log(`Client connected [id=${socket.id}]`);
-  sequenceNumberByClient.set(user.login, socket.id);
 
-  socket.on("disconnect", function() {
-    console.log(`Client gone [id=${socket.id}]`);
-    sequenceNumberByClient.delete(user.login);
-  });
-
-  socket.on("message", function(message) {
-    console.log("message: " + message.content);
-    var message = new Message({conversationId: message.conversationId, content: message.content, sender: message.sender, receiver: message.receiver})
-    socket[sequenceNumberByClient.get(receiver)].emit("received", message);
-    message.save();
-  });
-});
-*/
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -49,35 +32,24 @@ server.on('listening', onListening);
 
 
 
-let sequenceNumberByClient = new Map();
 
 io.on('connection', (socket) => {
     console.log("user connected");;
-    //console.log(`Client connected [id=${socket.id}]`);
-    //console.log(`Name =${session.email}`);
-    //sequenceNumberByClient.set(session.email, socket.id);
+    console.log(`Client connected [id=${socket.id}]`);
     socket.on("update", (data) => {
         console.log(`Client connected [id=${socket.id}]`);
-        //socket.emit("update", socket.session.user);
-        //console.log(`Name =${data.session.user.name}`);
-        //sequenceNumberByClient.set(userEmailLogin.email, socket.id);
     });
 
   socket.on("disconnect", () => {
     console.log(`Client gone [id=${socket.id}]`);
-    //sequenceNumberByClient.delete(session.email);
   });
 
   socket.on("message", function(message) {
     console.log("message: " + message.content);
     var message = new Message({conversationId: message.conversationId, content: message.content, sender: message.sender, receiver: message.receiver})
-    socket[sequenceNumberByClient.get(receiver)].emit("received", message);
     message.save();
   });
   });
-
-//var http = require('http').Server(app);
-//var io = require('socket.io')(http);
 
 /**
  * Normalize a port into a number, string, or false.

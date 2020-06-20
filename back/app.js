@@ -48,36 +48,19 @@ app.use('/chat', sendRouter);
 app.use('/search', searchRouter);
 
 var {mailOptions} = require('./Workers/Registration')
-app.get('/verify',function(req,res){
-  console.log(req.protocol+":/"+req.get('host'));
-  /*if((req.protocol+"://"+req.get('host'))==("http://"+host))
-  {
-      console.log("Domain is matched. Information is from Authentic email");
-      if(req.query.id==rand)
-      {*/
-          var user = User.findOne( {password: req.query.id});
-          user.active = true;
-          user.save();
-          console.log("email is verified");
-          res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-      /*}
-      else
-      {
-          console.log("email is not verified");
-          res.end("<h1>Bad Request</h1>");
-      }
-  }
-  else
-  {
-      res.end("<h1>Request is from unknown source");
-  }*/
+    app.get('/verify',function(req,res){
+    console.log(req.protocol+":/"+req.get('host'));
+    var user = User.findOne( {password: req.query.id});
+    user.active = true;
+    user.save();
+    console.log("email is verified");
+    res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
   });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
